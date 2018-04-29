@@ -1,0 +1,227 @@
+* NOTE . window layout ideas
+:PROPERTIES:
+:TS:       <2018-04-29 02:52PM>
+:ID:       ro70h140eyh0
+:END:
+
+- abstract window model
+# mostly because 1010/kendo window data is scattered everywhere, but also so we can apply layout generically to other windowing tools and/or widgets
+  - id
+  - x y z w h
+  - title
+  - modal
+  - resizable (implies maximizable)
+  - maximized
+  - minimized
+  - minimizable
+  - pinned
+
+- workspace concept
+
+  - data model = collection of variables
+    - xml/query variables (representing user's content)
+      - queries can be based on each other in a graph (by using issue xml=xxx)
+    - visible variables
+    - quickapp environments
+
+  - view model = tree of components
+    - tabs, windows, etc
+
+  - workspace is saved as a library
+
+
+* gui1 bugs:
+:PROPERTIES:
+:TS:       <2018-04-29 04:45PM>
+:ID:       tsndz890eyh0
+:END:
+'move this tab to new window' shows gui2 instead of the new tab.
+
+
+* NOTE old menu system
+:PROPERTIES:
+:TS:       <2018-04-29 04:44PM>
+:ID:       zv017790eyh0
+:END:
+- old menu system
+  - file
+    - close current worksheet
+    - save actions as text file
+    - save as new table...
+    - save and replace table...
+    - append an existing table...
+    - save as quick query...
+  - view
+    - multiple rows at a time...
+    - one row at a time...
+    - show quickapp...
+    - quickapp editor...
+    - show quickapp with mobile target...
+    - hide data display...
+    - -------------------------
+    - set preferences...
+  - actions
+    - undo last action
+    - undo all actions
+    - edit actions...
+    - edit actions (xml)...
+    - clear cache
+    - advanced...  (advanced settings)
+  - columns
+    - column information
+    - go to column...
+    - rearrange columns...
+    - create computed column...
+    - -------------------------
+    - link in another table...
+    - link in another worksheet...
+    - link and select rows...
+  - rows
+    - select rows...
+    - select rows (advanced)...
+    - -------------------------
+    - go to row...
+    - find row...
+    - find row (advanced)...
+    - -------------------------
+    - merge in another table/worksheet...
+  - analysis
+    - quick summary...
+    - tabulation...
+    - cross tabulation...
+  - download
+    - to microsoft excel
+    - as comma-separated text file
+    - as tab-separated text file
+    - as xml
+    - to pdf
+    - via ftp...
+  - chart
+    - histograms ...
+    - -------------------------
+    - line
+    - scatter
+    - pie
+    - bar
+    - -------------------------
+    - scatter (3D)
+    - surface
+    - bubble
+    - -------------------------
+    - financial charts...
+    - -------------------------
+    - create chart...
+  - info
+    - about this table
+
+
+* next actions
+:PROPERTIES:
+:TS:       <2018-04-29 05:03PM>
+:ID:       9sb874a0eyh0
+:END:
+
+** TODO [0/4] clean up current GUI2 window management bugs
+:PROPERTIES:
+:TS:       <2018-04-29 05:05PM>
+:ID:       kqtc56a0eyh0
+:END:
+- [ ] "rename window" doesn't update wintray
+- [ ] "close window" doesn't update wintray
+- [ ] windows jumping to front (core-2160, core-1323)
+- [ ] openwin using the same tag (core-1977)
+- [ ] wintray should be on top of other windows
+
+** TODO [0/2] basic window tray enhancements
+:PROPERTIES:
+:TS:       <2018-04-29 05:24PM>
+:ID:       1wr023b0eyh0
+:END:
+- [ ] close window from tray (core-611)
+- [ ] hide notifications and modals (core-731)
+
+
+** [0/2] Maybe?
+:PROPERTIES:
+:TS:       <2018-04-29 05:57PM>
+:ID:       alp94mc0eyh0
+:END:
+
+*** TODO "exposé" thing
+:PROPERTIES:
+:TS:       <2018-04-29 05:55PM>
+:ID:       fwreric0eyh0
+:END:
+- [ ] click to zoom out (using css scaling)
+  : jQuery('.k-window').css('transform','scale(0.5)')
+- [ ] arrange the windows so you can see everything (probably a bin packing algorithm)
+  https://stackoverflow.com/questions/1213394/what-algorithm-can-be-used-for-packing-rectangles-of-different-sizes-into-the-sm
+
+
+** TODO [0/2] window shortcuts for keyboard: restrict to when alt is pressed
+:PROPERTIES:
+:TS:       <2018-04-29 05:06PM>
+:ID:       p1t9f8a0eyh0
+:END:
+- [ ] hopefully same place where we remove auto-closing with escape
+- [ ] "rescue" a window (core-2040)
+
+** TODO [0/2] basic tiling support with current window concept
+:PROPERTIES:
+:TS:       <2018-04-29 05:05PM>
+:ID:       jnbbh7a0eyh0
+:END:
+- [ ] on drag to left/right edge, resize to fill half screen
+  seems to imply new state(s?) similar to "maximized" / "minimized"
+- [ ] keyboard shortcut for automatically moving to left/right
+
+** TODO [0/3] panes with their own wintrays
+:PROPERTIES:
+:TS:       <2018-04-29 05:14PM>
+:ID:       yidcnma0eyh0
+:END:
+- [ ] one main tab group (default group for all windows)
+- [ ] right click to introduce horizontal or vertical split
+- [ ] splitter/handlebar to slide up and down
+
+** TODO zoom current pane to fill whole screen ( tmux-style )
+:PROPERTIES:
+:TS:       <2018-04-29 05:59PM>
+:ID:       oqt9ppc0eyh0
+:END:
+
+
+
+* bigger project: "retro ui" (revamped UI for power users)
+** TODO single object manager docked on one side
+:PROPERTIES:
+:TS:       <2018-04-29 05:37PM>
+:ID:       h805qnb0eyh0
+:END:
+- [ ] single object manager on one side
+
+** TODO full-pane grid view (TRS revamp)
+:PROPERTIES:
+:TS:       <2018-04-29 05:37PM>
+:ID:       yhpgbob0eyh0
+:END:
+- [ ] full-screen grid window
+- [ ] detachable, dockable timeline/xml editor (with button to switch between the two)
+- [ ] menus at top to help with code generation
+- [ ] link to highlight folder in object manager (possibly on base/link)
+
+
+** TODO sub-panes and windows within a single window
+:PROPERTIES:
+:TS:       <2018-04-29 05:46PM>
+:ID:       d2q514c0eyh0
+:END:
+- floating sub-windows (timeline, xml editor)
+- tilable views of the same data (docking charts/etc)
+
+
+** TODO full-pane quickapp view (MLW revamp)
+:PROPERTIES:
+:TS:       <2018-04-29 05:37PM>
+:ID:       yhpgbob0eyh0
+:END:
